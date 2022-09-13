@@ -10,6 +10,7 @@ public class AvatarUploadingPopup {
 
     public AvatarUploadingPopup setAvatar() {
         $("#avatar-crop-form .btn").click();
+
         return this;
     }
 }

@@ -9,6 +9,7 @@ public class CustomApiListener {
     public static AllureRestAssured withCustomTemplates() {
         FILTER.setRequestTemplate("request.ftl");
         FILTER.setResponseTemplate("response.ftl");
+
         return FILTER;
     }
 }

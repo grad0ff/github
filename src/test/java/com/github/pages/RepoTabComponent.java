@@ -12,11 +12,13 @@ public class RepoTabComponent {
 
     public RepoTabComponent clickByTypeOption() {
         $("#type-options .btn").click();
+
         return this;
     }
 
     public RepoTabComponent selectPrivateFilter() {
         $$("#type-options .SelectMenu-item").get(2).click();
+
         return this;
     }
 }

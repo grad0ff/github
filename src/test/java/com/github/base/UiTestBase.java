@@ -52,6 +52,7 @@ public class UiTestBase extends TestBase {
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
 //                "enableVNC", true,
                 "enableVideo", true));
+
         return capabilities;
     }
 
@@ -80,6 +81,7 @@ public class UiTestBase extends TestBase {
     }
 
     private String getVideoUrl() {
+
         return String.format("%s/%s.mp4", WdConfig.getVideoPath(), Attach.getSessionId());
     }
 }

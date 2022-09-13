@@ -18,6 +18,7 @@ public class ProfilePage {
     private SelenideElement editProfileBtn = $(".Layout-sidebar [name='button']");
 
     public String getRepoTabPath() {
+
         return ENDPOINT + repoTab.PATH;
     }
 
@@ -27,36 +28,43 @@ public class ProfilePage {
 
     public ProfilePage setName(String value) {
         nameField.setValue(value);
+
         return this;
     }
 
     public ProfilePage setBio(String value) {
         bioField.setValue(value);
+
         return this;
     }
 
     public ProfilePage setCompany(String value) {
         companyField.setValue(value);
+
         return this;
     }
 
     public ProfilePage setLocation(String value) {
         loactionField.setValue(value);
+
         return this;
     }
 
     public ProfilePage setBlog(String value) {
         blogField.setValue(value);
+
         return this;
     }
 
     public ProfilePage setTwitter(String value) {
         twitterField.setValue(value);
+
         return this;
     }
 
     public ProfilePage saveChanges() {
         $(".Layout-sidebar .flex-column [type='submit']").click();
+
         return this;
     }
 }
