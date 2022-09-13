@@ -16,9 +16,6 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.webdriver;
 import static io.restassured.RestAssured.given;
 
-/*
- * Базовый класс для UI тестов
- */
 public class UiTestBase extends TestBase {
 
     protected static SelenoidConfig WdConfig = ConfigFactory.create(SelenoidConfig.class);
@@ -32,7 +29,7 @@ public class UiTestBase extends TestBase {
         Configuration.baseUrl = baseConfig.getBaseUrl();
         Configuration.browser = System.getProperty("browser", "chrome"); // TODO: 11.09.2022 реализовать в Jenkins
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080"); // TODO: 11.09.2022 реализовать в Jenkins
-        if (System.getProperty("webHost", "local").equals("remote")) { // TODO: 06.09.2022
+        if (System.getProperty("webHost", "remote").equals("remote")) { // TODO: 06.09.2022
             isRemoteDriver = true;
             Configuration.browserCapabilities = getRemoteWDCapabilities();
             Configuration.remote = WdConfig.getServerUrl();
@@ -54,7 +51,7 @@ public class UiTestBase extends TestBase {
     private static DesiredCapabilities getRemoteWDCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
+//                "enableVNC", true,
                 "enableVideo", true));
         return capabilities;
     }

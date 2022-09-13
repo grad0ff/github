@@ -7,4 +7,7 @@ public interface BaseConfig extends Config {
 
     @Key("baseUrl")
     String getBaseUrl();
+
+    @Key("baseApiUrl")
+    String getBaseApiUrl();
 }

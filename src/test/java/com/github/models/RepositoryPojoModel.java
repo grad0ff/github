@@ -19,21 +19,12 @@ public class RepositoryPojoModel {
     private String description;
     private RepoOwner owner;
 
-    static class RepoOwner {
+    @Data
+    @Accessors(fluent = true)
+    public static class RepoOwner {
 
         private String login;
         @SerializedName("html_url")
         private String htmlUrl;
     }
 }
-//"id": 1296269,
-//  "name": "Hello-World",
-//  "full_name": "octocat/Hello-World",
-//  "owner": {
-//    "login": "octocat",
-//    "html_url": "https://github.com/octocat",
-//  },
-//  "private": false,
-//  "html_url": "https://github.com/octocat/Hello-World",
-//  "description": "This your first repo!",
-//}

@@ -1,8 +1,13 @@
 package com.github.tests.combo;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import com.github.base.UiTestBase;
-import com.github.pages.ProfilePage;
+import com.github.javafaker.Faker;
+import com.github.pages.web.EmailsComponent;
+import com.github.pages.web.ProfilePage;
+import com.github.spec.BaseSpec;
+import com.github.spec.Spec;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -18,39 +23,37 @@ import java.util.Random;
 import static com.codeborne.selenide.CollectionCondition.allMatch;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
-import static com.github.spec.Spec.*;
+import static com.github.spec.Spec.config;
+import static com.github.spec.Spec.reqSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
-@Tag("combo")
+@Tag("COMBO")
 @Owner("grad0ff")
 @Feature("Work with API and UI of site")
 @DisplayName("API+UI tests")
 public class ComboTests extends UiTestBase {
-
-    ProfilePage page = new ProfilePage();
 
     @Test
     @Story("The user filters repositories")
     @Description("Checks that user can filter repositories")
     @DisplayName("Repositories filtering test")
     void filterRepoByVisibilityTest() {
+        ProfilePage page = new ProfilePage();
         reqSpec.basePath("/user/repos");
 
-        cleanRepoList(); // имитируем чистку данных
-        step("Create some public and private repositories with API", () -> {
+        step("Create 1 public and 2 private repositories with API", () -> {
             int repoCount = 3;
             do {
                 given()
-                        .spec(reqSpec)
+                        .spec(Spec.reqSpec)
                         .body(Map.of(
                                 "name", "repository" + new Random().nextInt(),
                                 "private", repoCount < 3))
-                        .log().all()
                         .when()
                         .post()
                         .then()
-                        .spec(resSpec)
+                        .spec(Spec.resSpec)
                         .statusCode(201);
                 repoCount--;
             }
@@ -68,21 +71,71 @@ public class ComboTests extends UiTestBase {
         step("Check that every repository contains 'Private' mark", () -> {
             page.repoTab.repoList.should(allMatch("all 'Private'", item -> item.getText().equals("Private")));
         });
+
+        cleanRepoList(); // имитируем чистку БД
     }
 
     private static void cleanRepoList() {
         String reqPath = String.format("/repos/%s/", config.getLogin());
         List<String> repoNames = given()
-                .spec(reqSpec)
+                .spec(BaseSpec.reqSpec)
+                .noFilters()
+                .when()
                 .get()
                 .then()
                 .statusCode(200)
-                .extract().jsonPath().get("name");
+                .extract().jsonPath().getList("name");
         repoNames.forEach(name -> given()
-                .spec(reqSpec)
+                .spec(BaseSpec.reqSpec)
+                .noFilters()
                 .basePath(reqPath)
+                .when()
                 .delete(name)
                 .then()
                 .statusCode(204));
+    }
+
+    @Test
+    @Story("The user's email is visible in settings page")
+    @Description("Checks user's email is visible in 'Emails' tab on settings page")
+    @DisplayName("Email visible test")
+    void emailVisibleTest() {
+        EmailsComponent emails = new EmailsComponent();
+        Faker faker = new Faker();
+        reqSpec.basePath("/user/emails");
+        String newEmail = faker.internet().emailAddress();
+
+        step("Add new user email with API", () -> {
+            given()
+                    .spec(Spec.reqSpec)
+                    .body(Map.of("emails", new String[]{newEmail}))
+                    .when()
+                    .post()
+                    .then()
+                    .spec(Spec.resSpec)
+                    .statusCode(201);
+        });
+        step("Open 'Emails' tab in user's profile settings page in browser", () -> {
+            open(emails.ENDPOINT);
+            WebDriverRunner.getWebDriver().manage().addCookie(cookie1);
+            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
+            refresh();
+        });
+        step("Check that new email is visible in emails list", () -> {
+            emails.newEmail.shouldHave(Condition.text(newEmail));
+        });
+
+        removeEmail(newEmail); // имитируем чистку БД
+    }
+
+    private static void removeEmail(String email) {
+        given()
+                .spec(BaseSpec.reqSpec)
+                .noFilters()
+                .body(Map.of("emails", new String[]{email}))
+                .when()
+                .delete()
+                .then()
+                .statusCode(204);
     }
 }
