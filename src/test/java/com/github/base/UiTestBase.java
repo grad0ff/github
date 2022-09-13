@@ -39,12 +39,12 @@ public class UiTestBase extends TestBase {
 
     @AfterEach
     void afterEach() {
-        if (!webdriver().driver().browser().isFirefox()) Attach.addLogs();
+//        if (!webdriver().driver().browser().isFirefox()) Attach.addLogs();
         Attach.addPageSource();
         Attach.addScreenshot();
         if (isRemoteDriver) Attach.addVideo(getVideoUrl());
-        Selenide.clearBrowserLocalStorage();
-        Selenide.clearBrowserCookies();
+//        Selenide.clearBrowserLocalStorage();
+//        Selenide.clearBrowserCookies();
         Selenide.closeWebDriver();
     }
 
