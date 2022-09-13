@@ -27,9 +27,9 @@ public class UiTestBase extends TestBase {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = baseConfig.getBaseUrl();
-        Configuration.browser = System.getProperty("browser", "chrome"); // TODO: 11.09.2022 реализовать в Jenkins
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080"); // TODO: 11.09.2022 реализовать в Jenkins
-        if (System.getProperty("webHost", "remote").equals("remote")) { // TODO: 06.09.2022
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        if (System.getProperty("host", "remote").equals("remote")) {
             isRemoteDriver = true;
             Configuration.browserCapabilities = getRemoteWDCapabilities();
             Configuration.remote = WdConfig.getServerUrl();
@@ -39,12 +39,11 @@ public class UiTestBase extends TestBase {
 
     @AfterEach
     void afterEach() {
-//        if (!webdriver().driver().browser().isFirefox()) Attach.addLogs();
+        if (!webdriver().driver().browser().isFirefox()) Attach.addLogs();
+        Attach.addLogs();
         Attach.addPageSource();
         Attach.addScreenshot();
         if (isRemoteDriver) Attach.addVideo(getVideoUrl());
-//        Selenide.clearBrowserLocalStorage();
-//        Selenide.clearBrowserCookies();
         Selenide.closeWebDriver();
     }
 

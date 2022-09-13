@@ -4,9 +4,6 @@ plugins {
     id 'io.freefair.lombok' version '6.5.0.3'
 }
 
-group 'ru.citilink'
-version '1.0-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
@@ -64,16 +61,6 @@ tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
 
-    if (System.getProperty("threads") != null) {
-        systemProperties += [
-                "junit.jupiter.execution.parallel.enabled"                 : "true",
-                "junit.jupiter.execution.parallel.mode.default"            : "concurrent",
-                "junit.jupiter.execution.parallel.mode.classes.default"    : "concurrent",
-                "junit.jupiter.execution.parallel.config.strategy"         : "fixed",
-                "junit.jupiter.execution.parallel.config.fixed.parallelism": System.getProperty("threads").toInteger()
-        ]
-    }
-
     testLogging {
         lifecycle {
             events 'started', 'skipped', 'failed', 'standard_error', 'standard_out'
@@ -84,24 +71,18 @@ tasks.withType(Test) {
 
 task ui_tests(type: Test) {
     useJUnitPlatform {
-        includeTags "ui"
+        includeTags "UI"
     }
 }
 
 task api_tests(type: Test) {
     useJUnitPlatform {
-        includeTags "api"
+        includeTags "API"
     }
 }
 
 task combo_tests(type: Test) {
     useJUnitPlatform {
-        includeTags "comboE"
-    }
-}
-
-task mobile_tests(type: Test) {
-    useJUnitPlatform {
-        includeTags "mobile"
+        includeTags "API+UI"
     }
 }

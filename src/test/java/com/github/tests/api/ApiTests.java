@@ -40,17 +40,16 @@ public class ApiTests extends TestBase {
         AtomicReference<UserPojoModel> userReference = new AtomicReference<>();
         reqSpec.basePath("/users/");
 
-        step("Get user profile data with API", () -> {
-            userReference.set(given()
-                    .spec(Spec.reqSpec)
-                    .when()
-                    .get(config.getLogin())
-                    .then()
-                    .spec(Spec.resSpec)
-                    .statusCode(200)
-                    .extract()
-                    .as(UserPojoModel.class));
-        });
+        step("Get user profile data with API", () ->
+                userReference.set(given()
+                        .spec(Spec.reqSpec)
+                        .when()
+                        .get(config.getLogin())
+                        .then()
+                        .spec(Spec.resSpec)
+                        .statusCode(200)
+                        .extract()
+                        .as(UserPojoModel.class)));
         UserPojoModel userData = userReference.get();
         step("Check that user data matches to before entered", () -> {
             assertThat(userData.getId()).isNotNull();
@@ -73,17 +72,16 @@ public class ApiTests extends TestBase {
         AtomicReference<RepositoryPojoModel> repoReference = new AtomicReference<>();
         reqSpec.basePath("/user/repos");
 
-        step("Create user repository and get it info with API", () -> {
-            repoReference.set(given()
-                    .spec(Spec.reqSpec)
-                    .body(repositoryModel)
-                    .when()
-                    .post()
-                    .then()
-                    .spec(Spec.resSpec)
-                    .statusCode(201)
-                    .extract().body().as(RepositoryPojoModel.class));
-        });
+        step("Create user repository and get it info with API", () ->
+                repoReference.set(given()
+                        .spec(Spec.reqSpec)
+                        .body(repositoryModel)
+                        .when()
+                        .post()
+                        .then()
+                        .spec(Spec.resSpec)
+                        .statusCode(201)
+                        .extract().body().as(RepositoryPojoModel.class)));
         RepositoryPojoModel repoInfo = repoReference.get();
         step("Check that current repository info matches to before entered ", () -> {
             assertThat(repoInfo.id()).isNotNull();
@@ -99,7 +97,7 @@ public class ApiTests extends TestBase {
                     String.format("%s/%s", baseConfig.getBaseUrl(), config.getLogin()));
         });
 
-        cleanRepoList(); // имитируем чистку БД
+        cleanRepoList(); // imitate DB cleaning
     }
 
     private static void cleanRepoList() {
@@ -145,19 +143,18 @@ public class ApiTests extends TestBase {
         AtomicInteger codReference = new AtomicInteger();
         reqSpec.basePath("/user/emails");
 
-        step("Try to add invalid user email with API and validate response", () -> {
-            codReference.set(given()
-                    .spec(Spec.reqSpec)
-                    .body(Map.of("emails", new String[]{email}))
-                    .when()
-                    .post()
-                    .then()
-                    .spec(Spec.resSpec)
-                    .extract().statusCode());
-        });
+        step("Try to add invalid user email with API and validate response", () ->
+                codReference.set(given()
+                        .spec(Spec.reqSpec)
+                        .body(Map.of("emails", new String[]{email}))
+                        .when()
+                        .post()
+                        .then()
+                        .spec(Spec.resSpec)
+                        .extract().statusCode()));
         int statusCode = codReference.get();
         step("Check that an invalid email address has not been added", () -> {
-            if (statusCode == 201) removeEmail(email); // имитируем чистку БД
+            if (statusCode == 201) removeEmail(email); // imitate DB cleaning
             assertThat(statusCode).isEqualTo(422);
         });
     }

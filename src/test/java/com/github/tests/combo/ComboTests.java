@@ -28,7 +28,7 @@ import static com.github.spec.Spec.reqSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
-@Tag("COMBO")
+@Tag("API+UI")
 @Owner("grad0ff")
 @Feature("Work with API and UI of site")
 @DisplayName("API+UI tests")
@@ -72,7 +72,7 @@ public class ComboTests extends UiTestBase {
             page.repoTab.repoList.should(allMatch("all 'Private'", item -> item.getText().equals("Private")));
         });
 
-        cleanRepoList(); // имитируем чистку БД
+        cleanRepoList(); // imitate DB cleaning
     }
 
     private static void cleanRepoList() {
@@ -125,7 +125,7 @@ public class ComboTests extends UiTestBase {
             emails.newEmail.shouldHave(Condition.text(newEmail));
         });
 
-        removeEmail(newEmail); // имитируем чистку БД
+        removeEmail(newEmail); // imitate DB cleaning
     }
 
     private static void removeEmail(String email) {
