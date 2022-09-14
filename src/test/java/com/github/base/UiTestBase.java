@@ -74,6 +74,7 @@ public class UiTestBase extends TestBase {
                 .when()
                 .post()
                 .then()
+                .log().all()
                 .statusCode(302)
                 .extract().cookies();
         cookie1 = new Cookie(cookie1Name, cookies.get(cookie1Name));
