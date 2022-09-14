@@ -43,7 +43,7 @@ public class UiTests extends UiTestBase {
 
         step("Open user's profile page in browser", () -> {
             open(page.ENDPOINT);
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie1);
+            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
             WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
             refresh();
         });
@@ -83,7 +83,7 @@ public class UiTests extends UiTestBase {
 
         step("Open 'Public profile' tab in user's profile settings page in browser", () -> {
             open("");
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie1);
+            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
             WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
             open(profile.ENDPOINT);
         });
