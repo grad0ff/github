@@ -7,7 +7,7 @@
 * <a href="#objects">Объекты тестирования</a>
 * <a href="#console">Запуск тестов из консоли</a>
 * <a href="#code">Код</a>
-    + <a href="#intelij">InteliJ IDEA, Java, JUnit 5, Selenide</a>
+    + <a href="#intelij">InteliJ IDEA, Java, JUnit 5, Selenide, Rest Assured</a>
     + <a href="#gradle">Gradle</a>
 * <a href="#screenshot">Скриншоты и видео</a>
   + <a href="#selenoid">Selenoid</a>
@@ -25,6 +25,7 @@
 <a href="https://www.java.com/"><img alt="Java" height="50" src="readme_files/technologies/java.svg" width="50"/></a>
 <a href="https://junit.org/junit5/"><img alt="JUnit 5" height="50" src="readme_files/technologies/junit5.svg" width="50"/></a>
 <a href="https://selenide.org/"><img alt="Selenide" height="50" src="readme_files/technologies/selenide.svg" width="50"/></a>
+<a href="https://rest-assured.io/"><img alt="Rest Assured" height="50" src="readme_files/technologies/rest_assured.svg" width="50"/></a>
 <a href="https://aerokube.com/selenoid/"><img alt="Selenoid" height="50" src="readme_files/technologies/selenoid.svg" width="50"/></a>
 <a href="https://gradle.org/"><img alt="Gradle" height="50" src="readme_files/technologies/gradle.svg" width="50"/></a>
 <a href="https://www.jenkins.io/"><img alt="Jenkins" height="50" src="readme_files/technologies/jenkins.svg" width="50"/></a>
