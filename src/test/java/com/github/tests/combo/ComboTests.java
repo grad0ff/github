@@ -15,6 +15,7 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Cookie;
 
 import java.util.List;
 import java.util.Map;
@@ -61,8 +62,9 @@ public class ComboTests extends UiTestBase {
         });
         step("Open user's repositories page in browser", () -> {
             open(page.getRepoTabPath());
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie1);
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
+            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
+//            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
+//            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
             refresh();
         });
         step("Filter repositories by private access", () -> {
@@ -117,8 +119,7 @@ public class ComboTests extends UiTestBase {
         });
         step("Open 'Emails' tab in user's profile settings page in browser", () -> {
             open(emails.ENDPOINT);
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie1);
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
+            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
             refresh();
         });
         step("Check that new email is visible in emails list", () -> {

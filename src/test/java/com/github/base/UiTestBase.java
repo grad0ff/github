@@ -20,7 +20,7 @@ public class UiTestBase extends TestBase {
 
     protected static SelenoidConfig WdConfig = ConfigFactory.create(SelenoidConfig.class);
     protected static UiAuthConfig uiAuthConfig = ConfigFactory.create(UiAuthConfig.class);
-    protected static Cookie cookie1;
+    protected static Cookie sessionCookie = new Cookie("user_session", "Swk7SB4Ji3PMqLz2SUdB-6k7ZDdJxj2GIJrkYLRqh_rXwEml");
     protected static Cookie cookie2;
     protected static boolean isRemoteDriver = false;
 
@@ -34,7 +34,7 @@ public class UiTestBase extends TestBase {
             Configuration.browserCapabilities = getRemoteWDCapabilities();
             Configuration.remote = WdConfig.getServerUrl();
         }
-        getAuthCookies();
+//        getAuthCookies();
     }
 
     @AfterEach
@@ -76,7 +76,7 @@ public class UiTestBase extends TestBase {
                 .then()
                 .statusCode(302)
                 .extract().cookies();
-        cookie1 = new Cookie(cookie1Name, cookies.get(cookie1Name));
+        sessionCookie = new Cookie(cookie1Name, cookies.get(cookie1Name));
         cookie2 = new Cookie(cookie2Name, cookies.get(cookie2Name));
     }
 
