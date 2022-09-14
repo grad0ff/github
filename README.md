@@ -11,9 +11,9 @@
     + <a href="#gradle">Gradle</a>
 * <a href="#screenshot">Скриншоты и видео</a>
   + <a href="#selenoid">Selenoid</a>
-    + <a href="#jenkins">Jenkins</a>
-    + <a href="#allure">Allure TestOps, Allure Report</a>
-    + <a href="#notifications">Telegram, Email</a>
+  + <a href="#jenkins">Jenkins</a>
+  + <a href="#allure">Allure TestOps, Allure Report</a>
+  + <a href="#notifications">Telegram, Email</a>
 
 
 
@@ -194,23 +194,23 @@ dependencies {
 <a id="screenshot"></a>
 ## Скриншоты и видео :camera_flash:
 
+
 <a id="selenoid"></a>
 #### <img alt="Selenoid" height="50" src="readme_files/technologies/selenoid.svg" width="50"/>Selenoid</a>
 
 > *Прогон UI автотестов на удаленном сервере*
 
-<img src="#" alt="Appium">
 <table>
      <tr>
         <td>
-        <a href="">
-        <img src="#">
-        </a>
+            <video src="https://user-images.githubusercontent.com/72714071/190106687-62bedabc-ebd1-4d1c-8ac2-e7dcb4b980b4.mp4" controls="controls" style="max-width:    730px;" poster="https://github.com/grad0ff/github/blob/master/readme_files/technologies/selenoid.svg">
+Видео недоступно.
+            </video>
         </td>
         <td>
-        <a href="">
-        <img src="#">
-        </a>
+            <video src="https://user-images.githubusercontent.com/72714071/190108058-1ca65372-db7f-4ad7-8b5c-19110cf65a25.mp4" controls="controls" style="max-width:    730px;" poster="https://github.com/grad0ff/github/blob/master/readme_files/technologies/selenoid.svg">
+Видео недоступно.
+            </video>
         </td>
     </tr>
 </table>
@@ -222,8 +222,8 @@ dependencies {
 > *Решение комплекса задач по сборке проекта, прогону автотестов, получению отчетов и отправке уведомлений по
 результатам сборки*
 
-<a href="https://jenkins.autotests.cloud/job/013-grad0ff-citilink_app/">
-<img src="https://user-images.githubusercontent.com/72714071/189988989-d6e9ab61-7f83-48de-959e-c22647cd8f02.png" alt="Jenkins">
+<a href="https://jenkins.autotests.cloud/job/013-grad0ff-github/">
+<img src="https://user-images.githubusercontent.com/72714071/190110963-6cd5a218-8a34-4bbe-9137-73af274d4aab.png" alt="Jenkins">
 </a>
 
 
@@ -236,52 +236,39 @@ dependencies {
 <table>
      <tr>
         <td>
-        <a href="https://allure.autotests.cloud/project/1577/dashboards">
-        <img src="https://user-images.githubusercontent.com/72714071/189997376-8c538270-37d5-49b2-b736-0db7358fdd04.png">
+        <a href="https://allure.autotests.cloud/project/1579/dashboards">
+        <img src="https://user-images.githubusercontent.com/72714071/190111941-3557dd8b-7577-4cc2-8dfa-31baf5407208.png">
         </a>
         </td>
         <td>
-        <a href="https://allure.autotests.cloud/project/1577/test-cases/12180?treeId=0">
-        <img src="https://user-images.githubusercontent.com/72714071/189997669-0841b599-dc6e-4ecf-b06c-f3f34b35b343.png">
+        <a href="https://allure.autotests.cloud/project/1579/test-cases/12193?treeId=3022">
+        <img src="https://user-images.githubusercontent.com/72714071/190112291-12574fd2-8ec6-40d0-ae68-c1d514759419.png">
         </a>
         </td>
     </tr>
     <tr>
         <td>
-        <a href="">
-        <img src="31">
+        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-github/allure/">
+        <img src="https://user-images.githubusercontent.com/72714071/190112805-8a1de909-ad70-42a0-a77b-d61f8f6315ce.png">
         </a>
         </td>
         <td>
-        <a href="">
-        <img src="32">
+        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-github/allure/#suites/8296116fb5ecdcc50ae710349f189d84">
+        <img src="https://user-images.githubusercontent.com/72714071/190113647-6d3fa879-7738-4b57-8dc6-fe3666deb04c.png">
         </a>
         </td>
     </tr>
     <tr>
         <td>
-        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-citilink_app/3/allure/">
-        <img src="https://user-images.githubusercontent.com/72714071/189989911-c386b009-4f2c-47bc-9bfd-cf52b9f590c9.png">
+        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-github/allure/#suites/9ae7943627b178f740fc1bf87589174c/f69d1b013c7c0036/">
+        <img src="https://user-images.githubusercontent.com/72714071/190114014-33ab5a9a-8087-4d2b-b07e-0430c108fad2.png">
         </a>
         </td>
         <td>
-        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-citilink_app/3/allure/#suites/350d01b1998bf4d3a515c65511d39529/ecbf6fbd4caae630/">
-        <img src="https://user-images.githubusercontent.com/72714071/189990175-90527087-533d-4ee6-b2c0-d79c3d4f6ae3.png">
+        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-github/allure/#graph">
+        <img src="https://user-images.githubusercontent.com/72714071/190114161-e05363e0-79a9-4d9f-9301-e25bf42c3bd3.png">
         </a>
         </td>
-    </tr>
-        <tr>
-        <td>
-        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-citilink_app/3/allure/#graph">
-        <img src="https://user-images.githubusercontent.com/72714071/189990670-c4a41b2a-c6b2-4436-a88c-8c6c68626667.png">
-        </a>
-        </td>
-        <td>
-        <a href="https://jenkins.autotests.cloud/job/013-grad0ff-citilink_app/3/allure/#suites/350d01b1998bf4d3a515c65511d39529/ecbf6fbd4caae630/">
-        <img src="https://user-images.githubusercontent.com/72714071/189991150-e6c15a15-af45-47f9-ae1e-59f9974690f1.png">*
-        </a>
-        </td>
-    </tr>
 </table>
 
 
@@ -294,11 +281,11 @@ dependencies {
 <table>
      <tr>
         <td>
-        <img src="https://user-images.githubusercontent.com/72714071/189994516-cc7b8ca7-2971-4265-a0ed-42f72278ccbc.png" alt="Telegram">
+        <img src="https://user-images.githubusercontent.com/72714071/190114686-f4e89064-8932-4fd2-9125-650521d93de2.png" alt="Telegram">
         </a>
         </td>
         <td>
-        <img src="https://user-images.githubusercontent.com/72714071/189995092-0979a150-d9fe-4da0-9a42-35f2de86377b.png" alt="Email">
+        <img src="https://user-images.githubusercontent.com/72714071/190115032-5665b927-957e-4c65-9589-9118a8c30b5e.png" alt="Email">
         </a>
         </td>
     </tr>
