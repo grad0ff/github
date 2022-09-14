@@ -1,5 +1,5 @@
 <a href="https://github.com/"><img alt="github.com" height="50" src="readme_files/technologies/github.svg"/></a>
-# Github. Автотесты на Java
+# GitHub. Автотесты на Java
 
 
 ## Содержание :bookmark_tabs:
