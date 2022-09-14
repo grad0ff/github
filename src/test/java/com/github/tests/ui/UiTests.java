@@ -44,7 +44,6 @@ public class UiTests extends UiTestBase {
         step("Open user's profile page in browser", () -> {
             open(page.ENDPOINT);
             WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
             refresh();
         });
         step("Click by 'Edit profile' button to left of page", () -> {
@@ -84,7 +83,6 @@ public class UiTests extends UiTestBase {
         step("Open 'Public profile' tab in user's profile settings page in browser", () -> {
             open("");
             WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
-            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
             open(profile.ENDPOINT);
         });
         step("Click by 'Edit' button to right of page", profile::clickByEditProfileBtn);

@@ -15,7 +15,6 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Cookie;
 
 import java.util.List;
 import java.util.Map;
@@ -63,8 +62,6 @@ public class ComboTests extends UiTestBase {
         step("Open user's repositories page in browser", () -> {
             open(page.getRepoTabPath());
             WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
-//            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
-//            WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
             refresh();
         });
         step("Filter repositories by private access", () -> {
