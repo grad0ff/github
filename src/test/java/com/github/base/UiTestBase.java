@@ -64,7 +64,7 @@ public class UiTestBase extends TestBase {
         Map<String, String> cookies = given()
                 .baseUri(baseConfig.getBaseUrl())
                 .basePath(reqPath)
-//                .contentType(uiAuthConfig.getContentType())
+                .contentType(uiAuthConfig.getContentType())
                 .cookie(uiAuthConfig.getCookie())
                 .formParams(Map.of(
                         "commit", "Sign+in",
