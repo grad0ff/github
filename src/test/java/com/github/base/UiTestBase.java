@@ -3,6 +3,7 @@ package com.github.base;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.github.config.SelenoidConfig;
+import com.github.config.UiAuthConfig;
 import com.github.utils.Attach;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -17,7 +18,9 @@ import static com.codeborne.selenide.Selenide.webdriver;
 public class UiTestBase extends TestBase {
 
     protected static SelenoidConfig WdConfig = ConfigFactory.create(SelenoidConfig.class);
-    protected static Cookie sessionCookie = new Cookie("user_session", "Swk7SB4Ji3PMqLz2SUdB-6k7ZDdJxj2GIJrkYLRqh_rXwEml");
+    protected static UiAuthConfig uiAuthConfig = ConfigFactory.create(UiAuthConfig.class);
+    protected static Cookie userCookie = new Cookie("user_session", uiAuthConfig.getCookie());
+    protected static Cookie hostCookie = new Cookie("__Host-user_session_same_site", uiAuthConfig.getCookie());
     protected static boolean isRemoteDriver = false;
 
     @BeforeAll

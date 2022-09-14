@@ -43,7 +43,8 @@ public class UiTests extends UiTestBase {
 
         step("Open user's profile page in browser", () -> {
             open(page.ENDPOINT);
-            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(userCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(hostCookie);
             refresh();
         });
         step("Click by 'Edit profile' button to left of page", () -> {
@@ -81,9 +82,10 @@ public class UiTests extends UiTestBase {
                 "It may take a few moments to update across the site.";
 
         step("Open 'Public profile' tab in user's profile settings page in browser", () -> {
-            open("");
-            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
             open(profile.ENDPOINT);
+            WebDriverRunner.getWebDriver().manage().addCookie(userCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(hostCookie);
+            refresh();
         });
         step("Click by 'Edit' button to right of page", profile::clickByEditProfileBtn);
         step("Set new Avatar", () -> {

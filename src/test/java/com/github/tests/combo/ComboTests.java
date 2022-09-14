@@ -61,7 +61,8 @@ public class ComboTests extends UiTestBase {
         });
         step("Open user's repositories page in browser", () -> {
             open(page.getRepoTabPath());
-            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(userCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(hostCookie);
             refresh();
         });
         step("Filter repositories by private access", () -> {
@@ -116,7 +117,8 @@ public class ComboTests extends UiTestBase {
         });
         step("Open 'Emails' tab in user's profile settings page in browser", () -> {
             open(emails.ENDPOINT);
-            WebDriverRunner.getWebDriver().manage().addCookie(sessionCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(userCookie);
+            WebDriverRunner.getWebDriver().manage().addCookie(hostCookie);
             refresh();
         });
         step("Check that new email is visible in emails list", () -> {
