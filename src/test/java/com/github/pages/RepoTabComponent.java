@@ -16,9 +16,7 @@ public class RepoTabComponent {
         return this;
     }
 
-    public RepoTabComponent selectPrivateFilter() {
+    public void selectPrivateFilter() {
         $$("#type-options .SelectMenu-item").get(2).click();
-
-        return this;
     }
 }

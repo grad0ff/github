@@ -62,9 +62,7 @@ public class ProfilePage {
         return this;
     }
 
-    public ProfilePage saveChanges() {
+    public void saveChanges() {
         $(".Layout-sidebar .flex-column [type='submit']").click();
-
-        return this;
     }
 }

@@ -2,12 +2,12 @@ package com.github.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources("classpath:config/BaseConfig.properties")
+@Config.Sources("classpath:config/base_config.properties")
 public interface BaseConfig extends Config {
 
     @Key("baseUrl")
-    String getBaseUrl();
+    String baseUrl();
 
     @Key("baseApiUrl")
-    String getBaseApiUrl();
+    String baseApiUrl();
 }

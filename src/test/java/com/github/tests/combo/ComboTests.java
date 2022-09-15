@@ -8,7 +8,6 @@ import com.github.pages.EmailsComponent;
 import com.github.pages.ProfilePage;
 import com.github.spec.BaseSpec;
 import com.github.spec.Spec;
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -28,55 +27,53 @@ import static com.github.spec.Spec.reqSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
-@Tag("API+UI")
+@Tag("COMBO")
 @Owner("grad0ff")
 @Feature("Work with API and UI of site")
-@DisplayName("API+UI tests")
+@DisplayName("API and UI tests")
 public class ComboTests extends UiTestBase {
 
     @Test
     @Story("The user filters repositories")
-    @Description("Checks that user can filter repositories")
     @DisplayName("Repositories filtering test")
     void filterRepoByVisibilityTest() {
         ProfilePage page = new ProfilePage();
         reqSpec.basePath("/user/repos");
 
-        step("Create 1 public and 2 private repositories with API", () -> {
-            int repoCount = 3;
-            do {
-                given()
-                        .spec(Spec.reqSpec)
-                        .body(Map.of(
-                                "name", "repository" + new Random().nextInt(),
-                                "private", repoCount < 3))
-                        .when()
-                        .post()
-                        .then()
-                        .spec(Spec.resSpec)
-                        .statusCode(201);
-                repoCount--;
-            }
-            while (repoCount > 0);
-        });
+        step("Create 1 public and 2 private repositories with API", () ->
+                createRepositories(3));
         step("Open user's repositories page in browser", () -> {
             open(page.getRepoTabPath());
             WebDriverRunner.getWebDriver().manage().addCookie(userCookie);
             WebDriverRunner.getWebDriver().manage().addCookie(hostCookie);
             refresh();
         });
-        step("Filter repositories by private access", () -> {
-            page.repoTab.clickByTypeOption().selectPrivateFilter();
-        });
+        step("Filter repositories by private access", () ->
+                page.repoTab.clickByTypeOption().selectPrivateFilter());
         step("Check that every repository contains 'Private' mark", () -> {
             page.repoTab.repoList.should(allMatch("all 'Private'", item -> item.getText().equals("Private")));
         });
-
         cleanRepoList(); // imitate DB cleaning
     }
 
-    private static void cleanRepoList() {
-        String reqPath = String.format("/repos/%s/", config.getLogin());
+    private void createRepositories(int repoCount) {
+        while (repoCount > 0) {
+            given()
+                    .spec(Spec.reqSpec)
+                    .body(Map.of(
+                            "name", "repository" + new Random().nextInt(),
+                            "private", repoCount < 3))
+                    .when()
+                    .post()
+                    .then()
+                    .spec(Spec.resSpec)
+                    .statusCode(201);
+            repoCount--;
+        }
+    }
+
+    private void cleanRepoList() {
+        String reqPath = String.format("/repos/%s/", config.login());
         List<String> repoNames = given()
                 .spec(BaseSpec.reqSpec)
                 .noFilters()
@@ -97,7 +94,6 @@ public class ComboTests extends UiTestBase {
 
     @Test
     @Story("The user's email is visible in settings page")
-    @Description("Checks user's email is visible in 'Emails' tab on settings page")
     @DisplayName("Email visible test")
     void emailVisibleTest() {
         EmailsComponent emails = new EmailsComponent();
@@ -124,11 +120,10 @@ public class ComboTests extends UiTestBase {
         step("Check that new email is visible in emails list", () -> {
             emails.newEmail.shouldHave(Condition.text(newEmail));
         });
-
         removeEmail(newEmail); // imitate DB cleaning
     }
 
-    private static void removeEmail(String email) {
+    private void removeEmail(String email) {
         given()
                 .spec(BaseSpec.reqSpec)
                 .noFilters()

@@ -8,9 +8,7 @@ public class AvatarUploadingPopup {
 
     public SelenideElement modal = $("#avatar-crop-form");
 
-    public AvatarUploadingPopup setAvatar() {
+    public void setAvatar() {
         $("#avatar-crop-form .btn").click();
-
-        return this;
     }
 }

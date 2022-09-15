@@ -16,10 +16,10 @@ public class BaseSpec {
     public static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     public static BaseConfig baseConfig = ConfigFactory.create(BaseConfig.class);
     public static String accept = "application/vnd.github+json";
-    public static Header header = new Header("Authorization", "Bearer " + config.getApiToken());
+    public static Header header = new Header("Authorization", "Bearer " + config.apiToken());
 
     public static RequestSpecification reqSpec = with()
-            .baseUri(baseConfig.getBaseApiUrl())
+            .baseUri(baseConfig.baseApiUrl())
             .accept(accept)
             .header(header);
 

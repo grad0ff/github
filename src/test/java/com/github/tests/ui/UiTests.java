@@ -5,7 +5,6 @@ import com.github.base.UiTestBase;
 import com.github.javafaker.Faker;
 import com.github.pages.ProfilePage;
 import com.github.pages.PublicProfileComponent;
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -29,7 +28,6 @@ public class UiTests extends UiTestBase {
 
     @Test
     @Story("User edits profile")
-    @Description("Checks that user can edit own profile data")
     @DisplayName("Profile editing test")
     void editProfileTest() {
         ProfilePage page = new ProfilePage();
@@ -72,7 +70,6 @@ public class UiTests extends UiTestBase {
 
     @Test
     @Story("User uploads avatar")
-    @Description("Checks that user can upload avatar to profile")
     @DisplayName("Profile avatar uploading test")
     void uploadPhotoTest() {
         PublicProfileComponent profile = new PublicProfileComponent();

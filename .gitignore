@@ -1,8 +1,10 @@
-.gradle/
-.idea/
-build/
-gradle/
+/.idea/
+/.gradle/
+/build/
+/gradle/
+/notifications/
+src/test/resources/config/
 gradlew.bat
 settings.gradle
-../github
-/.idea/
+
+

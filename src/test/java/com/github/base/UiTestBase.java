@@ -19,19 +19,19 @@ public class UiTestBase extends TestBase {
 
     protected static SelenoidConfig WdConfig = ConfigFactory.create(SelenoidConfig.class);
     protected static UiAuthConfig uiAuthConfig = ConfigFactory.create(UiAuthConfig.class);
-    protected static Cookie userCookie = new Cookie("user_session", uiAuthConfig.getCookie());
-    protected static Cookie hostCookie = new Cookie("__Host-user_session_same_site", uiAuthConfig.getCookie());
+    protected static Cookie userCookie = new Cookie("user_session", uiAuthConfig.cookie());
+    protected static Cookie hostCookie = new Cookie("__Host-user_session_same_site", uiAuthConfig.cookie());
     protected static boolean isRemoteDriver = false;
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = baseConfig.getBaseUrl();
+        Configuration.baseUrl = baseConfig.baseUrl();
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         if (System.getProperty("host", "remote").equals("remote")) {
             isRemoteDriver = true;
             Configuration.browserCapabilities = getRemoteWDCapabilities();
-            Configuration.remote = WdConfig.getServerUrl();
+            Configuration.remote = WdConfig.serverUrl();
         }
     }
 
@@ -55,6 +55,6 @@ public class UiTestBase extends TestBase {
 
     private String getVideoUrl() {
 
-        return String.format("%s/%s.mp4", WdConfig.getVideoPath(), Attach.getSessionId());
+        return String.format("%s/%s.mp4", WdConfig.videoPath(), Attach.getSessionId());
     }
 }
