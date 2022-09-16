@@ -96,50 +96,34 @@ gradle clean
 > *Оформление кода автотестов*
 
 ```java
+    @Tag("COMBO")
+    @Owner("grad0ff")
+    @Feature("Work with API and UI of site")
+    @DisplayName("API and UI tests")
+    public class ComboTests extends UiTestBase {
 
-@Tag("API+AUI")
-@Owner("grad0ff")
-@Feature("Work with API and UI of site")
-@DisplayName("API+UI tests")
-public class ComboTests extends UiTestBase {
+        @Test
+        @Story("The user filters repositories")
+        @DisplayName("Repositories filtering test")
+        void filterRepoByVisibilityTest() {
+            ProfilePage page = new ProfilePage();
+            reqSpec.basePath("/user/repos");
 
-  @Test
-  @Story("The user filters repositories")
-  @Description("Checks that user can filter repositories")
-  @DisplayName("Repositories filtering test")
-  void filterRepoByVisibilityTest() {
-    ProfilePage page = new ProfilePage();
-    reqSpec.basePath("/user/repos");
-
-    step("Create 1 public and 2 private repositories with API", () -> {
-      int repoCount = 3;
-      do {
-        given()
-                .spec(Spec.reqSpec)
-                .body(Map.of(
-                        "name", "repository" + new Random().nextInt(),
-                        "private", repoCount < 3))
-                .when()
-                .post()
-                .then()
-                .spec(Spec.resSpec)
-                .statusCode(201);
-        repoCount--;
-      }
-      while (repoCount > 0);
-    });
-    step("Open user's repositories page in browser", () -> {
-      open(page.getRepoTabPath());
-      WebDriverRunner.getWebDriver().manage().addCookie(cookie1);
-      WebDriverRunner.getWebDriver().manage().addCookie(cookie2);
-      refresh();
-    });
-    step("Filter repositories by private access", () ->
-            page.repoTab.clickByTypeOption().selectPrivateFilter());
-    step("Check that every repository contains 'Private' mark", () -> 
-            page.repoTab.repoList.should(allMatch("all 'Private'", item -> item.getText().equals("Private"))));
-  }
-}
+            step("Create 1 public and 2 private repositories with API", () ->
+                    createRepositories(3));
+            step("Open user's repositories page in browser", () -> {
+                open(page.getRepoTabPath());
+                WebDriverRunner.getWebDriver().manage().addCookie(userCookie);
+                WebDriverRunner.getWebDriver().manage().addCookie(hostCookie);
+                refresh();
+            });
+            step("Filter repositories by private access", () ->
+                    page.repoTab.clickByTypeOption().selectPrivateFilter());
+            step("Check that every repository contains 'Private' mark", () -> {
+                page.repoTab.repoList.should(allMatch("all 'Private'", item -> item.getText().equals("Private")));
+            });
+            cleanRepoList();
+        }
 ```
 
 
