@@ -27,7 +27,7 @@ import static com.github.spec.Spec.reqSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
-    @Tag("COMBO")
+    @Tag("COMBINED")
     @Owner("grad0ff")
     @Feature("Work with API and UI of site")
     @DisplayName("API and UI tests")
@@ -55,14 +55,14 @@ import static io.restassured.RestAssured.given;
             cleanRepoList(); // imitate DB cleaning
         }
 
-        private void createRepositories(int publicRepo, int privateRepo) {
-            int repoCount = publicRepo + privateRepo;
+        private void createRepositories(int publicCount, int privateCount) {
+            int repoCount = publicCount + privateCount;
             while (repoCount > 0) {
                 given()
                         .spec(Spec.reqSpec)
                         .body(Map.of(
                                 "name", "repository" + new Random().nextInt(),
-                                "private", repoCount <= privateRepo))
+                                "private", repoCount <= privateCount))
                         .when()
                         .post()
                         .then()

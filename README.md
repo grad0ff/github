@@ -96,7 +96,7 @@ gradle clean
 > *Оформление кода автотестов*
 
 ```java
-@Tag("COMBO")
+@Tag("COMBINED")
 @Owner("grad0ff")
 @Feature("Work with API and UI of site")
 @DisplayName("API and UI tests")

@@ -117,9 +117,8 @@ public class ApiTests extends TestBase {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"@email.com", "mailboxemail.com", "mailbox@.com", "mailbox@emailcom",
-            "mailbox@email.", "mailbox@123.com", "mailbox@!%^.com", "mailbox@email.456", "mailbox@email./*>",
-            "", "*&^", "0", "123", "(*&)"})
+    @ValueSource(strings = {"@email.com", "mailboxemail.com", "mailbox@.com", "mailbox@emailcom", "mailbox@email.",
+            "mailbox@123.com", "mailbox@!%^.com", "mailbox@email.456", "mailbox@email./*>", "", "*&^", "0", "123", "(*&)"})
     @DisplayName("Adding invalid email test")
     void addEmailNegativeTest(String email) {
         AtomicInteger codReference = new AtomicInteger();

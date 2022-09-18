@@ -83,6 +83,6 @@ task api_tests(type: Test) {
 
 task combo_tests(type: Test) {
     useJUnitPlatform {
-        includeTags "COMBO"
+        includeTags "COMBINED"
     }
 }
